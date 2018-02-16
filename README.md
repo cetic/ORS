@@ -140,14 +140,18 @@ The configuration file 'model-resources/resources/config.properties' contains th
 ### 3.4 Build ORS & generate project
 
  >mvn clean package
+
  >cd target
+
  >chmod 755 generate.sh
+
  >./generate.sh
  
  You will find a directory named `generated_model`.
  This directory contains the sources of the web application.
  
  >cd generated_model
+ 
  >mvn package
 
 ### 3.5 Deployment

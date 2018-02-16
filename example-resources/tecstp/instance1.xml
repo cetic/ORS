@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/C:/Users/redirnet/Documents/OntologyRepositoryServices/trunk/model-resources/generated-sources/query.xsd">
+    <field>field0</field>
+    <field>field1</field>
+    <filter>
+        <expression>
+            <predicate>description_fr</predicate>
+            <operator>textsearch</operator>
+            <value>HUY</value>
+        </expression>
+    </filter>
+</query>

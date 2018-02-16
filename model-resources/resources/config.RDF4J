@@ -1,0 +1,5 @@
+rdfDataEndpoint = http://localhost:18080/rdf4j-server/repositories/mobits/statements
+rdfDataEndpointUpdate = http://localhost:18080/rdf4j-server/repositories/mobits/statements
+rdfDataEndpointQuery = http://localhost:18080/rdf4j-server/repositories/mobits?query
+repositoryModel = be.cetic.ors.ontologybinding.generic.query.database.rdf4j_model.RDF4JSparqlModel
+reasoner= RDFS

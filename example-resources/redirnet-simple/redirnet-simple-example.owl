@@ -1,0 +1,836 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#"
+     xml:base="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:redirnet-core-ontology="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:j.1="http://vistology.com/ont/2007/JC3IEDM3.1a/JC3IEDM3.1a.owl#"
+     xmlns:j.0="http://purl.org/emergel/modules#"
+     xmlns:j.3="http://dbpedia.org/resource/"
+     xmlns:j.2="http://purl.org/emergel/core#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/administeredBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/administeredBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/administratorOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/AgencyDepartment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/administratorOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/administratorOf">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Station"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/attachedOn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/attachedOn">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/resourceLocation"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/attachments"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Sensor"/>
+        <rdfs:range rdf:resource="http://purl.org/emergel/modules#Vehicle"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/attachments -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/attachments">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://purl.org/emergel/modules#Vehicle"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Sensor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/deployedAt -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/deployedAt">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/resourceLocation"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource"/>
+        <rdfs:range rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/divisionOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/divisionOf">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/hasDivision"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/AgencyDepartment"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/eventLocation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/eventLocation">
+        <rdfs:domain rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Event"/>
+        <rdfs:range rdf:resource="http://vistology.com/ont/2007/JC3IEDM3.1a/JC3IEDM3.1a.owl#LOCATION"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/hasDivision -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/hasDivision">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/AgencyDepartment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/isInChargeOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/isInChargeOf">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/managedBy"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre"/>
+        <rdfs:range rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/managedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/managedBy">
+        <rdfs:domain rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Event"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/operatedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/operatedBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/operates"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/operates -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/operates">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/resourceLocation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/resourceLocation">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/stationLocation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/stationLocation">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Station"/>
+        <rdfs:range rdf:resource="http://vistology.com/ont/2007/JC3IEDM3.1a/JC3IEDM3.1a.owl#LOCATION"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#eventCode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#eventCode">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Event"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/resourceCode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/resourceCode">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/resourceStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/resourceStatus">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/emergel/core#RoadCollision -->
+
+    <owl:Class rdf:about="http://purl.org/emergel/core#RoadCollision">
+        <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/emergel/core#Wildfire -->
+
+    <owl:Class rdf:about="http://purl.org/emergel/core#Wildfire">
+        <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/emergel/modules#Vehicle -->
+
+    <owl:Class rdf:about="http://purl.org/emergel/modules#Vehicle">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://vistology.com/ont/2007/JC3IEDM3.1a/JC3IEDM3.1a.owl#GEOGRAPHIC-POINT -->
+
+    <owl:Class rdf:about="http://vistology.com/ont/2007/JC3IEDM3.1a/JC3IEDM3.1a.owl#GEOGRAPHIC-POINT">
+        <rdfs:subClassOf rdf:resource="http://vistology.com/ont/2007/JC3IEDM3.1a/JC3IEDM3.1a.owl#LOCATION"/>
+        <rdfs:comment>An ABSOLUTE-POINT that has its position specified with respect to the surface of the World Geodetic System 1984 (WGS 84) ellipsoid.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GEOGRAPHIC-POINT</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://vistology.com/ont/2007/JC3IEDM3.1a/JC3IEDM3.1a.owl#LOCATION -->
+
+    <owl:Class rdf:about="http://vistology.com/ont/2007/JC3IEDM3.1a/JC3IEDM3.1a.owl#LOCATION">
+        <rdfs:comment>A specification of position and geometry with respect to a specified horizontal frame of reference and a vertical distance measured from a specified datum.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LOCATION</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.loa-cnr.it/ontologies/DUL.owl#Event -->
+
+    <owl:Class rdf:about="http://www.loa-cnr.it/ontologies/DUL.owl#Event">
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Station"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency">
+        <rdfs:comment>A central concept in the REDIRNET ontology, it represents the emergency response agency and can belong (but not limited to) to one of the following domains: police, fire brigade, health care, coast guard, army etc.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/AgencyDepartment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/AgencyDepartment"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/AgencyDepartment"/>
+        <rdfs:comment>The command and control centre of an agency</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/FireBrigade -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/FireBrigade">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Sensor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Police -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Police">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource">
+        <rdfs:comment>The  service or asset of an agency</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Sensor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Sensor">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/SmokeDetector -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/SmokeDetector">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Sensor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Station -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Station">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/AgencyDepartment"/>
+        <rdfs:comment>An agency station</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/UnmannedVehicle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/UnmannedVehicle">
+        <rdfs:subClassOf rdf:resource="http://purl.org/emergel/modules#Vehicle"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520">
+        <rdf:type rdf:resource="http://purl.org/emergel/core#RoadCollision"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange_FireRescue -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange_FireRescue">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Station"/>
+        <redirnet-core-ontology:stationLocation rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange_Police -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange_Police">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Station"/>
+        <redirnet-core-ontology:stationLocation rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianFireDepartment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianFireDepartment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/FireBrigade"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianPolice -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianPolice">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Police"/>
+        <redirnet-core-ontology:hasDivision rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange_Police"/>
+        <redirnet-core-ontology:hasDivision rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BrabantWallon_Command"/>
+        <redirnet-core-ontology:hasDivision rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo_Police"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianPoliceDeLaRoute -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianPoliceDeLaRoute">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Belgium -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Belgium"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BrabantWallon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BrabantWallon"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BrabantWallon_Command -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BrabantWallon_Command">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre"/>
+        <redirnet-core-ontology:divisionOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo_Police"/>
+        <redirnet-core-ontology:isInChargeOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#WaterlooLionFire"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#CCTV_Waterloo_Lion13 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#CCTV_Waterloo_Lion13">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo_Police"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#WaterlooLionFire"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BrabantWallon_Command"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#DoorAlarm_N -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#DoorAlarm_N">
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <rdfs:label>Tunnel door emergency alarm - Noth side</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#DoorAlarm_S -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#DoorAlarm_S">
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <rdfs:label>Tunnel door emergency alarm - South side</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#FireAlarm_N -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#FireAlarm_N">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/SmokeDetector"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <rdfs:label>Tunnel fire alarm - north side</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#FireAlarm_S -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#FireAlarm_S">
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <rdfs:label>Tunnel fire alarm - South side</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#FireAlarm_button -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#FireAlarm_button">
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <rdfs:label>Fire Alarm button</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#GrandDucheLuxembourg -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#GrandDucheLuxembourg"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#HS-51afc233-b659-4d51-95b8-88f17a79fa06 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#HS-51afc233-b659-4d51-95b8-88f17a79fa06">
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo_Police"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#WaterlooLionFire"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BrabantWallon_Command"/>
+        <rdfs:comment xml:lang="en">comment resource</rdfs:comment>
+        <rdfs:label xml:lang="en">Humidity91</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#HS-db6899d3-5b84-4927-97f8-0b364d6dba84 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#HS-db6899d3-5b84-4927-97f8-0b364d6dba84">
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo_Police"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#WaterlooLionFire"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BrabantWallon_Command"/>
+        <rdfs:comment xml:lang="en">comment resource</rdfs:comment>
+        <rdfs:label xml:lang="en">Humidity89</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Hero4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Hero4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor"/>
+        <redirnet-core-ontology:attachedOn rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#szarkair"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BrabantWallon_Command"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LV-24caf6c6-77e3-4ec6-bbad-eee36cb888f7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LV-24caf6c6-77e3-4ec6-bbad-eee36cb888f7">
+        <rdf:type rdf:resource="http://purl.org/emergel/modules#Vehicle"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo_Police"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#WaterlooLionFire"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BrabantWallon_Command"/>
+        <rdfs:comment xml:lang="en">comment-drone</rdfs:comment>
+        <rdfs:label xml:lang="en">landV34</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Luxembourg -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Luxembourg"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_Command -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_Command">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre"/>
+        <redirnet-core-ontology:divisionOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgPolice"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_FireRescue -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_FireRescue">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Station"/>
+        <redirnet-core-ontology:stationLocation rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_Police -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_Police">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Station"/>
+        <redirnet-core-ontology:stationLocation rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgFireRescue -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgFireRescue">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/FireBrigade"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgPolice -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgPolice">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Police"/>
+        <redirnet-core-ontology:hasDivision rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_Police"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgPoliceDeLaRoute -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgPoliceDeLaRoute">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Luxembourg_Command -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Luxembourg_Command">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre"/>
+        <redirnet-core-ontology:divisionOf rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianPolice"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Nivelles -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Nivelles"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#P_CCTV_NE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#P_CCTV_NE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_Police"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_Police"/>
+        <rdfs:label>Police CCTV Westbound facing West</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#P_CCTV_NW -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#P_CCTV_NW">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianPoliceDeLaRoute"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianPoliceDeLaRoute"/>
+        <rdfs:label>Police CCTV Westbound facing East</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#P_CCTV_SE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#P_CCTV_SE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_Police"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#LuxembourgCity_Police"/>
+        <rdfs:label>Police Eastbound facing West</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#P_CCTV_SW -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#P_CCTV_SW">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianPoliceDeLaRoute"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#BelgianPoliceDeLaRoute"/>
+        <rdfs:label>Police CCTV Eastbount facing East</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#SAIReplyCollector -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#SAIReplyCollector"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#T_CCTV_NE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#T_CCTV_NE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <rdfs:label>Tunnel CCTV Westbound facing West</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#T_CCTV_NW -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#T_CCTV_NW">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <rdfs:label>Tunnel CCTV Westbound Facing East</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#T_CCTV_SE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#T_CCTV_SE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <rdfs:label>Tunnel CCTV Eastbound facing West</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#T_CCTV_SW -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#T_CCTV_SW">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ImageSensor"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency"/>
+        <rdfs:label>Tunnel CCTV Eastbound facing East</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#TunnelAgency">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/ControlCentre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#WaterlooLionFire -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#WaterlooLionFire">
+        <rdf:type rdf:resource="http://purl.org/emergel/core#Wildfire"/>
+        <redirnet-core-ontology:resourceCode>FIRE-BE-1400-123</redirnet-core-ontology:resourceCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo_Police -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo_Police">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Agency"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Station"/>
+        <redirnet-core-ontology:stationLocation rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Waterloo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#fireInGosselies -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#fireInGosselies">
+        <rdf:type rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Event"/>
+        <redirnet-core-ontology:resourceCode>FIRE-BE-6041-28</redirnet-core-ontology:resourceCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#flyover -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#flyover"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#security_notificaton -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#security_notificaton"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#szarkair -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#szarkair">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/UnmannedVehicle"/>
+        <redirnet-core-ontology:administeredBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange_Police"/>
+        <redirnet-core-ontology:attachments rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Hero4"/>
+        <redirnet-core-ontology:deployedAt rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#AubangeTunnel_Event20150520"/>
+        <redirnet-core-ontology:operatedBy rdf:resource="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#Aubange_Police"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#video_stream -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#video_stream"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

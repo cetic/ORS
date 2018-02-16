@@ -108,19 +108,19 @@ NOTE: Class names of POJOS must follow the java class name convention otherwise 
 
 The properties file `src/main/resources/namespaceConfig.properties` configures the ORS. 
 This file is composed of:
- 
- * Generator section.
- 	- The location of the directories that contain the generated files in the _target_ project directory. The default configuration should be sufficient.
+
+* Generator section.
+	- The location of the directories that contain the generated files in the _target_ project directory. The default configuration should be sufficient.
     	* POJO_directory 	-> generated POJOs
     	* query_directory 	-> generated query POJOs
     	* target_directory	-> directoroy of the generated project sources
     	* target_package	-> the package the generator is going to generate data
-    - The generator generates 3 subpackages
-    	* rs -> rest resources
-    	* rdf -> converting POJO to rdf
-    	* manager -> business logic
- * RDF configuration section. This section defines the RDF <-> POJO conversion rules
- 	- RDF namespace configuration. It is necessary to edit this section
+	- The generator generates 3 subpackages
+		* rs -> rest resources
+		* rdf -> converting POJO to rdf
+		* manager -> business logic
+* RDF configuration section. This section defines the RDF <-> POJO conversion rules
+	- RDF namespace configuration. It is necessary to edit this section
  		* defaultNamespace -> the domain ontology namespace 
         * POJO class name and RDF namespace mapping table
  		* Which POJO field must be considered as an RDF label and the language field
@@ -128,14 +128,14 @@ This file is composed of:
 #### 3.3.2 Repository deployment configuration
 
 The configuration file 'model-resources/resources/config.properties' contains the configuration of (templates are available for fuseki and RDF4J repositories)
-	* Repositorty Endpoints:
-		- rdfDataEndpoint = http://localhost:18080/fuseki/redirnet/data
- 		- rdfDataEndpointUpdate = http://localhost:18080/fuseki/redirnet/update
- 		- rdfDataEndpointQuery = http://localhost:18080/fuseki/redirnet?query
- 	* repositoryModel -> repository serialisation model class. Use the ones in the templates
- 	* reasoner -> reasoner type. Currently supporting the jena default reasoners: 
- 		- 'RDFS' value for RDFSReasoner
- 		- 'Transitive' value for TransitiveReasoner 
+* Repositorty Endpoints:
+	- rdfDataEndpoint = http://localhost:18080/fuseki/redirnet/data
+ 	- rdfDataEndpointUpdate = http://localhost:18080/fuseki/redirnet/update
+ 	- rdfDataEndpointQuery = http://localhost:18080/fuseki/redirnet?query
+* repositoryModel -> repository serialisation model class. Use the ones in the templates
+* reasoner -> reasoner type. Currently supporting the jena default reasoners: 
+ 	- 'RDFS' value for RDFSReasoner
+ 	- 'Transitive' value for TransitiveReasoner 
 
 ### 3.4 Build ORS & generate project
 
@@ -163,7 +163,12 @@ The last step is to deploy the generated war by importing it into the servlet co
 
 ### 3.6 Example files
 
-TODO 
+The following example files are available for trying out the ORS:
+
+* ./example-resources/redirnet-simple/redirnet-simple-example.owl -> Simple and small ontology with some individuals for deploying in Fuseki repository.
+* ./example-resources/redirnet-simple/(java files) -> the POJOs generated from the ontology
+* Make sure that the namespace.config contains the correct class and namespace mapping.
+* Follow the instructions of this chapter (3) to build and deploy an ORS project using this example files.
 
 ### 3.7 Known issues
 

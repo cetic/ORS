@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    elementFormDefault="qualified" vc:maxVersion="1.1"
+    vc:minVersion="1.0" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+
+    <xs:element name="query">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="field" type="query_select_field" maxOccurs="unbounded"/>
+                <xs:element name="filter" type="query_filter" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="query_filter">
+        <xs:sequence>
+            <xs:element name="expression" type="Expression" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="individual" type="Individual" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Individual">
+        <xs:attribute name="id" type="xs:anyURI" use="required"/>
+    </xs:complexType>
+
+
+    <xs:complexType name="Expression">
+        <xs:sequence>
+            <xs:element name="predicate" type="xs:string"/>
+            <xs:element name="operator" type="xs:string"/>
+            <xs:choice>
+                <xs:element name="value" type="xs:string"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="query_select_field">
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
+
+
+    <xs:element name="query_select_field" type="query_select_field"/>
+    <xs:element name="Expression" type="Expression"/>
+    
+
+</xs:schema>

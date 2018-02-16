@@ -86,6 +86,8 @@ The procedure for building an ORS project is as follows:
 
 ### 3.1 Directory structure
 
+The top level structure of ORS is:
+
  src/  				-> the sources
  model-resources/   
  	generated-sources/ 	-> the generated pojos and query schema files

@@ -8,8 +8,10 @@ The repository provides a RESTful web services API that acts as a back-end for W
 
 The Ontology Repository core and its REST API are designed to be domain independent. One can easily extend or customize the stored data model without requiring any source code changes on the ORS. Addtionally the generated web service REST API can be easily extended and customised according to the use case requirements.
 
-## 1. Features
+## 1 Features
+
 ### 1.1 Supported Features
+
 * Two-way approach for building the Data Model
 	- from XML Schema (XSD) - designed to be extended to supporting other popular front-end formats (JSON)
 	- from its Ontology formal description (OWL)
@@ -22,11 +24,12 @@ The Ontology Repository core and its REST API are designed to be domain independ
 * Support for RDF4J repository and ONTOP plugin for accessing individuals from relational databases.
 
 ### 1.2 Next release features
+
 * Protege plugin 
 * Frontend generation
 * JSON-LD support
 
-## 2. Architecture
+## 2 Architecture
 
 The ontology repository consists of two services: the WS Application and the RDF repository and SPARQL server. The attached architecture diagram provides a component view of the ORS.
 
@@ -64,7 +67,7 @@ Fabian Steels
 
 The ORS is free open source software available under the Apache v2 license. See LICENSE file.
 
-## 3. Build & Deploy
+## 3 Build & Deploy
 
 The procedure for building an ORS project is as follows:
 1. Deploy servlet container
@@ -82,6 +85,7 @@ The procedure for building an ORS project is as follows:
 7. Deployment of generated project.
 
 ### 3.1 Directory structure
+
  src/  				-> the sources
  model-resources/   
  	generated-sources/ 	-> the generated pojos and query schema files

@@ -50,12 +50,12 @@ The Fuseki Application as well as the WS Application are both integrated into th
 
 ### 2.3 Libraries and Technologies
 
-* Apache Jena (jena.apache.org). A free and open source Java framework for building Semantic Web and Linked Data applications.
-* Apache Jena Fuseki (jena.apache.org/documentation/fuseki2).
-* RDF4J Repository (rdf4j.org) with ONTOP plugin (https://github.com/ontop/ontop)
-* Jersey framework (jersey.java.net). A JAX-RS API implementation and framework for developing RESTful web services
-* JavaParser (javaparser.org). Simple and lightweight set of tools for processing java code programmatically.
-* JCodeModel (github.com/phax/jcodemodel). A code generation library
+* Apache Jena (http://jena.apache.org). A free and open source Java framework for building Semantic Web and Linked Data applications.
+* Apache Jena Fuseki (http://jena.apache.org/documentation/fuseki2).
+* RDF4J Repository (http://rdf4j.org) with ONTOP plugin (https://github.com/ontop/ontop)
+* Jersey framework (http://jersey.java.net). A JAX-RS API implementation and framework for developing RESTful web services
+* JavaParser (http://javaparser.org). Simple and lightweight set of tools for processing java code programmatically.
+* JCodeModel (http://github.com/phax/jcodemodel). A code generation library
 
 ### 2.4 License 
 

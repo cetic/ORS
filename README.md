@@ -63,7 +63,7 @@ Copyright © CETIC 2018, www.cetic.be
 
 Authors: Nikolaos Matskanis, Fabian Steels
 
-The ORS is free open source software available under the Apache v2 license. See LICENSE file.
+The ORS is free open source software available under the Apache v2 license. See the [LICENSE](https://github.com/cetic/ORS/blob/master/LICENSE) file.
 
 ## 3 Build & Deploy
 

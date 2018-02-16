@@ -111,16 +111,16 @@ This file is composed of:
  
  * Generator section. 
  	The location of the directories that contain the generated filesi the _target_ project directory. The default configuration should be sufficient.
-         - POJO_directory 	-> generated POJOs
-         - query_directory 	-> generated query POJOs
-         - target_directory	-> directoroy of the generated project sources
-         - target_package	-> the package the generator is going to generate data
+         ** POJO_directory 	-> generated POJOs
+         ** query_directory 	-> generated query POJOs
+         ** target_directory	-> directoroy of the generated project sources
+         ** target_package	-> the package the generator is going to generate data
          	The generator is going to generate 3 subpackages
              rs -> rest resources
              rdf -> converting POJO to rdf
              manager -> business logic
  * RDF configuration section. This section defines the RDF <-> POJO conversion rules
- 	RDF namespace configuration. It is necessary to edit this section
+ 	- RDF namespace configuration. It is necessary to edit this section
  		* defaultNamespace -> the domain ontology namespace 
         * POJO class name and RDF namespace mapping table
  		* Which POJO field must be considered as an RDF label and the language field
@@ -129,9 +129,9 @@ This file is composed of:
 
 The configuration file 'model-resources/resources/config.properties' contains the configuration of (templates are available for fuseki and RDF4J repositories)
 	* Repositorty Endpoints:
-	rdfDataEndpoint = http://localhost:18080/fuseki/redirnet/data
- 	rdfDataEndpointUpdate = http://localhost:18080/fuseki/redirnet/update
- 	rdfDataEndpointQuery = http://localhost:18080/fuseki/redirnet?query
+		rdfDataEndpoint = http://localhost:18080/fuseki/redirnet/data
+ 		rdfDataEndpointUpdate = http://localhost:18080/fuseki/redirnet/update
+ 		rdfDataEndpointQuery = http://localhost:18080/fuseki/redirnet?query
  	* repositoryModel -> repository serialisation model class. Use the ones in the templates
  	* reasoner -> reasoner type. Currently supporting the jena default reasoners: 
  		- 'RDFS' value for RDFSReasoner
@@ -151,7 +151,7 @@ The configuration file 'model-resources/resources/config.properties' contains th
  This directory contains the sources of the web application.
  
  >cd generated_model
- 
+
  >mvn package
 
 ### 3.5 Deployment

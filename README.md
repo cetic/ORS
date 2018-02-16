@@ -8,9 +8,9 @@ The repository provides a RESTful web services API that acts as a back-end for W
 
 The Ontology Repository core and its REST API are designed to be domain independent. One can easily extend or customize the stored data model without requiring any source code changes on the ORS. Addtionally the generated web service REST API can be easily extended and customised according to the use case requirements.
 
-##1 Features
+## 1 Features
 
-###1.1 Supported Features
+### 1.1 Supported Features
 
 * Two-way approach for building the Data Model
 	- from XML Schema (XSD) - designed to be extended to supporting other popular front-end formats (JSON)
@@ -23,17 +23,17 @@ The Ontology Repository core and its REST API are designed to be domain independ
 * Support for knowledge-base (ontology and data) reasoning using the Jena RDFS and Transitive reasoenrs. Support for more reasoners will be added in future releases.
 * Support for RDF4J repository and ONTOP plugin for accessing individuals from relational databases.
 
-###1.2 Next release features
+### 1.2 Next release features
 
 * Protege plugin 
 * Frontend generation
 * JSON-LD support
 
-##2 Architecture
+## 2 Architecture
 
 The ontology repository consists of two services: the WS Application and the RDF repository and SPARQL server. The attached architecture diagram provides a component view of the ORS.
 
-###2.1 The WS Application 
+### 2.1 The WS Application 
 
 Allows the management of domain information and exposes a RESTful interface. The service exchanges with its clients XML documents (support for other serialization formats, such as JSON, will be added) according to the schema that is defined by the XSD document. The WS Application accepts RESTful requests and provides methods that store domain data, receive one specific data item in XML, search for data in the given domain by providing an XML query and delete requests. All the XML requests and data descriptions must follow a XSD file (generated from the ontology). This application uses the Jena API to submit requests to the Fuseki Application and is composed of:
 1. The Generator component, which generates java classes from XML schema for parsing the XML documents.
@@ -42,13 +42,13 @@ Allows the management of domain information and exposes a RESTful interface. The
 4. The RDF parser component that converts RDF to Data model, also uses Jena
 5. The Web services generator.
 
-###2.2 The RDF repository
+### 2.2 The RDF repository
 
 The Apache Jena Fuseki Application is the interface to the Fuseki RDF repository. This application accepts Jena requests from the WS Application that can be a query, a request to add an RDF item, to update an item, etc. It also exposes a SPARQL endpoint with REST interface that allows querying the repository directly using SPARQL queries.
 
 The Fuseki Application as well as the WS Application are both integrated into the same web service container (back-end container).
 
-###2.3 Libraries and Technologies
+### 2.3 Libraries and Technologies
 
 * Apache Jena (jena.apache.org). A free and open source Java framework for building Semantic Web and Linked Data applications.
 * Apache Jena Fuseki (jena.apache.org/documentation/fuseki2).
@@ -57,7 +57,7 @@ The Fuseki Application as well as the WS Application are both integrated into th
 * JavaParser (javaparser.org). Simple and lightweight set of tools for processing java code programmatically.
 * JCodeModel (github.com/phax/jcodemodel). A code generation library
 
-###2.4 License 
+### 2.4 License 
 
 Copyright © CETIC 2018, www.cetic.be 
 
@@ -67,7 +67,7 @@ Fabian Steels
 
 The ORS is free open source software available under the Apache v2 license. See LICENSE file.
 
-##3 Build & Deploy
+## 3 Build & Deploy
 
 The procedure for building an ORS project is as follows:
 1. Deploy servlet container
@@ -84,7 +84,7 @@ The procedure for building an ORS project is as follows:
 6. Build ORS & generate project
 7. Deployment of generated project.
 
-###3.1 Directory structure
+### 3.1 Directory structure
 
 The top level structure of ORS is:
 
@@ -94,7 +94,7 @@ The top level structure of ORS is:
  	resources/ 			-> deployment configuration files with example configurations
  example-resources/ -> examples for testing the ORS.
 
-###3.2 POJO generation
+### 3.2 POJO generation
 
 From XSD: if the project ha developed an XSD (some cases useful for defining the WS API), it can be used for generating the POJOS using xjc
 From OWL: Use the protege plugin ... (TODO)
@@ -102,9 +102,9 @@ Manually: create a POJO for each OWL class with all the prooperties as java clas
 
 NOTE: Class names of POJOS must follow the java class name convention otherwise the POJO packages will not be imported in the generated classes! In some cases this may lead to XSD schema elements or OWL classes must also follow java class name convention.
 
-###3.3 Configuration
+### 3.3 Configuration
 
-####3.3.1 RDF Namespaces and ORS configuration
+#### 3.3.1 RDF Namespaces and ORS configuration
 
 The properties file `src/main/resources/namespaceConfig.properties` configures the ORS. 
 This file is composed of:
@@ -125,7 +125,7 @@ This file is composed of:
         * POJO class name and RDF namespace mapping table
  		* Which POJO field must be considered as an RDF label and the language field
  
-####3.3.2 Repository deployment configuration
+#### 3.3.2 Repository deployment configuration
 
 The configuration file 'model-resources/resources/config.properties' contains the configuration of (templates are available for fuseki and RDF4J repositories)
 	* Repositorty Endpoints:
@@ -137,7 +137,7 @@ The configuration file 'model-resources/resources/config.properties' contains th
  		- 'RDFS' value for RDFSReasoner
  		- 'Transitive' value for TransitiveReasoner 
 
-###3.4 Build ORS & generate project
+### 3.4 Build ORS & generate project
 
  >mvn clean package
  >cd target
@@ -150,22 +150,18 @@ The configuration file 'model-resources/resources/config.properties' contains th
  >cd generated_model
  >mvn package
 
-###3.5 Deployment
+### 3.5 Deployment
 
 The webservices have been tested primarily with Apache Tomcat/8.5
 
 After compiling the sources of 'generated_model' you will find inside its target directory (/path_to/generated_model/target) a `war` file named `repository.war`
 The last step is to deploy the generated war by importing it into the servlet container (e.g. tomcat 8.5).
 
-###3.6 Example files
+### 3.6 Example files
 
 TODO 
 
-###3.7 Known issues
+### 3.7 Known issues
 
 1. Current delete implementation is not enabled at the REST API.
 2. POJO generation implementation using OWL files (Protege Plugin support) is not completed, no alternative currenlty available. 
-
-
-
-

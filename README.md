@@ -31,7 +31,9 @@ The Ontology Repository core and its REST API are designed to be domain independ
 
 ## 2 Architecture
 
-The ontology repository consists of two services: the WS Application and the RDF repository and SPARQL server. The attached architecture diagram provides a component view of the ORS.
+The ontology repository consists of two services: the WS Application and the RDF repository and SPARQL server. The following architecture diagram provides a component view of the ORS.
+
+![alt text](https://github.com/cetic/ORS/blob/master/model-resources/resources/ORS-20171204.png "ORS Architecture")
 
 ### 2.1 The WS Application 
 

@@ -95,7 +95,7 @@ public class QueryManager extends GenericQueryManager {
                 if (operator.equals("textsearch")) {
                     String randomVar = RandomStringUtils.randomAlphanumeric(5);
                     sb.append("OPTIONAL {?uri <").append(expression.getPredicate()).append("> ?").append(randomVar).append(" }\n");
-                    sb.append("filter (REGEX(?").append(randomVar).append(", '").append(expression.getValue()).append("','i')).\n");
+                    sb.append("filter (REGEX(str(?").append(randomVar).append("), '").append(expression.getValue()).append("','i')).\n");
                     selectFields+="?"+randomVar+" ";
                 } else {
                     // returns ?uri propertyNs:eventLocatedNear ?property.

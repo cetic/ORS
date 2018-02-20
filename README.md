@@ -129,9 +129,9 @@ This file is composed of:
 
 The configuration file 'model-resources/resources/config.properties' contains the configuration of (templates are available for fuseki and RDF4J repositories)
 * Repositorty Endpoints:
-	- rdfDataEndpoint = http://localhost:18080/fuseki/redirnet/data
- 	- rdfDataEndpointUpdate = http://localhost:18080/fuseki/redirnet/update
- 	- rdfDataEndpointQuery = http://localhost:18080/fuseki/redirnet?query
+	- rdfDataEndpoint = http://[host]:[port]/fuseki/[dataset]/data
+ 	- rdfDataEndpointUpdate = http://[host]:[port]/fuseki/[dateset]/update
+ 	- rdfDataEndpointQuery = http://[hotst]:[port]/fuseki/[dataset]?query
 * repositoryModel -> repository serialisation model class. Use the ones in the templates
 * reasoner -> reasoner type. Currently supporting the jena default reasoners: 
  	- 'RDFS' value for RDFSReasoner
@@ -161,7 +161,7 @@ The webservices have been tested primarily with Apache Tomcat/8.5
 After compiling the sources of 'generated_model' you will find inside its target directory (/path_to/generated_model/target) a `war` file named `repository.war`
 The last step is to deploy the generated war by importing it into the servlet container (e.g. tomcat 8.5).
 
-### 3.6 Example files
+### 3.6 Using the API (with examples) 
 
 The following example files are available for trying out the ORS:
 
@@ -169,6 +169,57 @@ The following example files are available for trying out the ORS:
 * ./example-resources/redirnet-simple/(java files) -> the POJOs generated from the ontology
 * Make sure that the namespace.config contains the correct class and namespace mapping.
 * Follow the instructions of this chapter (3) to build and deploy an ORS project using this example files.
+
+#### 3.6.1 Get Requests
+
+* Get all individuals of a certain concept (for example get all Events):
+
+>GET http://[host]:[port]/repository/api/Event
+
+* Get an individual of a certain concept by URI:
+
+>GET http://[host]:[port]/repository/api/Event?id=http://www.loa-cnr.it/ontologies/DUL.owl%23Event/e2457b 
+
+#### 3.6.2 POST of new Individual with an example
+
+For posting new Individuals on the repository for this redirent-simple example:
+
+POST at the endpoint http://[host]:[port]/repository/api/Event
+With message body:
+<event>
+	<id>http://www.loa-cnr.it/ontologies/DUL.owl#Event/e2457b</id>
+</event>
+
+#### 3.6.3 Making a Query with an example
+
+For making a complex query client applications can use the schema defined in [query.xsd](https://github.com/cetic/ORS/blob/master/model-resources/generated-sources/query.xsd).
+For building the query applications can retireve the available predicates:
+
+GET http://[host]:[port]/repository/api/query/predicates
+
+and fields: 
+
+GET http://[host]:[port]/repository/api/query/fields
+
+And one of the operators currently supported: {textsearch, in, not in }
+
+On the endpoint http://[host]:[port]/repository/api/query
+
+POST with message body:
+
+<?xml version="1.0" encoding="UTF-8"?>
+ <query xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="file:/C:/Users/redirnet/Documents/OntologyRepositoryServices/trunk/model-resources/generated-sources/query.xsd">
+     <field>http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/Resource</field>
+     <filter>
+         <expression>
+             <predicate>http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology/deployedAt</predicate>
+             <operator>textsearch</operator>
+             <value>Waterloo</value>
+         </expression>
+     </filter>
+ </query>
 
 ### 3.7 Known issues
 

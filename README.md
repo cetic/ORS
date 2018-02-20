@@ -186,9 +186,11 @@ For posting new Individuals on the repository for this redirent-simple example:
 
 POST at the endpoint http://[host]:[port]/repository/api/Event
 With message body:
+```xml
 <event>
 	<id>http://www.loa-cnr.it/ontologies/DUL.owl#Event/e2457b</id>
 </event>
+```
 
 #### 3.6.3 Making a Query with an example
 
@@ -206,7 +208,7 @@ And one of the operators currently supported: {textsearch, in, not in }
 On the endpoint http://[host]:[port]/repository/api/query
 
 POST with message body:
-
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
  <query xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -220,7 +222,7 @@ POST with message body:
          </expression>
      </filter>
  </query>
-
+```
 ### 3.7 Known issues
 
 1. Current delete implementation is not enabled at the REST API.

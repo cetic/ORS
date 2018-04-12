@@ -8,7 +8,6 @@ package be.cetic.ors.ontologybinding.generic.query;
 import generated.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.RandomStringUtils;
@@ -83,8 +82,6 @@ public class QueryManager extends GenericQueryManager {
 
     String sparqlExpression() throws QueryManagerException {
         logger.info("Parsing expression");
-
-        List<String> validOperator = Arrays.asList("in", "not in", "textsearch");
 
         StringBuilder sb = new StringBuilder("\n");
 

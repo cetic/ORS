@@ -44,7 +44,7 @@ public class RestQuery {
      */
     @Path("/fields")
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response fields() throws IOException {
         try{
             logger.info("Getting fields");
@@ -53,10 +53,10 @@ public class RestQuery {
             SparqlModel sm = sparqlManager.selectDistinctFields();
             ArrayList values=sm.getAllValues();
 
-            String fields = Arrays.toString(values.toArray(new String[values.size()])).replaceAll("^.|.$", "");
+            //String fields = Arrays.toString(values.toArray(new String[values.size()])).replaceAll("^.|.$", "");
 
             //return Response.ok(fields.toLowerCase()).build();
-            return Response.ok(fields).build();
+            return Response.ok(values).build();
 
         } catch (SparqlManagerException ex) {
             logger.error("Error exceuting sparql query", ex);
@@ -65,10 +65,11 @@ public class RestQuery {
 
     }
 
+    //@Produces(MediaType.TEXT_PLAIN)
+    //  @Override
     @Path("/predicates")
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    //  @Override
+    @Produces(MediaType.APPLICATION_JSON)
     public Response predicates() throws IOException {
         try {
             logger.info("Predicate");
@@ -77,9 +78,9 @@ public class RestQuery {
 
             ArrayList values=fs.getAllValues();
 
-            String predicates = Arrays.toString(values.toArray(new String[values.size()])).replaceAll("^.|.$", "");
+            //String predicates = Arrays.toString(values.toArray(new String[values.size()])).replaceAll("^.|.$", "");
 
-            return Response.ok(predicates).build();
+            return Response.ok(values).build();
         } catch (SparqlManagerException ex) {
             logger.error("Error exceuting sparql query", ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error exceuting sparql query " + ex).build();
@@ -87,12 +88,24 @@ public class RestQuery {
 
     }
 
+    //@Produces(MediaType.TEXT_PLAIN)
+    //  @Override
+    @Path("/operators")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response operators() throws IOException {
+        List<String> values=QueryManager.validOperator;
+        logger.info("Operator List "+values);
+        return Response.ok(values).build();
+    }
+
     // Must be detailled for each root hierarchy e.g. : 
     // a put on query/resource will return resource object while 
     // a put on query/foo will return a foo object
+    //@Consumes(MediaType.APPLICATION_XML)
     @Path("/")
     @PUT
-    @Consumes(MediaType.APPLICATION_XML)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     //@Override
     public Response query(Query query) {

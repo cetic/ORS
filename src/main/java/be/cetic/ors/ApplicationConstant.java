@@ -58,6 +58,10 @@ public class ApplicationConstant {
     public String getONTOLOGY_NAMESPACE(){
         return properties.getProperty("defaultNamespace");
     }
+
+    public String getSERIALIZATION(){
+        return properties.getProperty("serialization");
+    }
     
     /**
      * Return the corresponding namepace associated with the specified class

@@ -15,9 +15,18 @@ import java.util.List;
  */
 public enum PrimitiveType {
     BYTE("byte"),
-    BIG_DECIMAL("BigDecimal"),
-    SHORT("short"),
-    INT("int"), LONG("long"), FLOAT("float"), DOUBLE("double"), BOOLEAN("boolean"), CHAR("char"), STRING("String");
+    BIG_DECIMAL("BigDecimal"), 
+    XMLGREGORIANCALENDAR("XMLGregorianCalendar"), 
+    SHORT("short"), INT("int"), LONG("long"), FLOAT("float"), DOUBLE("double"), 
+    BOOLEAN("boolean"), 
+    CHAR("char"), 
+    STRING("String"), 
+    FLOAT_OBJECT("Float"),
+    LONG_OBJECT("Long"),
+    DOUBLE_OBJECT("Double"),
+    INTEGER_OBJECT("Integer"),
+    BOOLEAN_OBJECT("Boolean"), 
+    OBJECT("Object");
     
     
     private String name = "";

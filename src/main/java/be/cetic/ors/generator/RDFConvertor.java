@@ -90,12 +90,13 @@ public class RDFConvertor {
 
         // add "toRDF" method
         JMethod toRDF = jc.method(JMod.PUBLIC, String.class, "toRDF");
-        AbstractJClass xmlAnalysisExceptionClass = codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.XmlAnalysisException");
+        AbstractJClass xmlAnalysisExceptionClass = codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.SerializationAnalysisException");
         AbstractJClass uriExceptionClass = codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.ClassURIException");
         AbstractJClass resourceExceptionClass = codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.ResourceNotFoundException");
         toRDF._throws(uriExceptionClass);
         toRDF._throws(xmlAnalysisExceptionClass);
         toRDF._throws(resourceExceptionClass);
+        logger.log(Level.INFO, "Analyzing:" +analyzerResult.getAnalysedClass().getSimpleName().toLowerCase() );
         JVar xmlClassParameter = toRDF.param(analyzerResult.getAnalysedClass(), analyzerResult.getAnalysedClass().getSimpleName().toLowerCase());
 
         AbstractJClass ontClass = codeModel.ref("org.apache.jena.ontology.OntClass");
@@ -139,7 +140,7 @@ public class RDFConvertor {
     }
 
     /**
-     * Gert the variable of the XMLClass and generate the conversion tools
+     * Get the variable of the XMLClass and generate the conversion tools
      *
      * @param codeModel
      * @param xmlClassParameter
@@ -175,7 +176,23 @@ public class RDFConvertor {
                 }
 
             }else{
-                logger.log(Level.INFO, "Not primitive type detected: {0}", type);
+                logger.log(Level.INFO, "Object type detected: {0}", type);
+                for (String variableName : entry.getValue()) {
+                    // e.g.: the variable foo must be translated to getFoo() 
+                    // e.g.: the variable currentLocation.geographicPointAltitude must be translated into getCurrentLocation().getGeographicPointAltitude()
+                    int cpt =1;
+                    JInvocation getVariable = null;
+                    for (String decomposedVariable: variableName.split("\\.")){
+                        String methodName = "get" + decomposedVariable.substring(0, 1).toUpperCase() + decomposedVariable.substring(1);
+                        if (cpt ==1){
+                            getVariable = xmlClassParameter.invoke(methodName);
+                            cpt++;
+                        }else{
+                            getVariable = getVariable.invoke(methodName);
+                        }
+                    }
+                    createObjectProperty(codeModel, ontclass ,jBlock, getVariable, variableName.replace(".", "_"));
+                }
             }
         }
         return jBlock;
@@ -202,6 +219,31 @@ public class RDFConvertor {
         invAddLitt.arg(datapropertyvalue); // Objects.toString(teclocation.getStreetname_nl(),"")
 
         jBlock.add(invAddLitt);
+    }
+
+    /**
+     * Assign a variable to an object  property
+     *
+     * @param codeModel
+     * @param jBlock the container
+     * @param getVariable the invocation to get the variable
+     * @param getVariableName the name of the variable
+     */
+    private void createObjectProperty(JCodeModel codeModel, JVar ontclass,  JBlock jBlock, JInvocation getVariable, String getVariableName) {
+        // object property 
+        JDirectClass ontPropertyClass = codeModel.directClass("org.apache.jena.ontology.OntProperty");
+        JInvocation ontPropertyInv = JExpr._this().invoke("getPropertyByName").arg(ontclass).arg(getVariableName);
+        JVar dataproperty = jBlock.decl(ontPropertyClass, "property4" + getVariableName, ontPropertyInv);
+
+        JConditional jCond = jBlock._if(getVariable.ne(JExpr._null()));
+
+        //idvGeoPoint.addLiteral(propertyLongitud, resource.getCurrentLocation().getGeographicPointLongitudeCooordinate());
+        JInvocation invAddLitt = JExpr._this().invoke("getIndividual").invoke("addProperty");
+        invAddLitt.arg(dataproperty);
+        JInvocation datapropertyvalue=JExpr._this().invoke("getOntModel").invoke("getIndividual").arg(getVariable.invoke("getId"));
+        invAddLitt.arg(datapropertyvalue); 
+
+        jCond._then().add(invAddLitt);
     }
 
 }

@@ -20,6 +20,8 @@ import com.helger.jcodemodel.JMethod;
 import com.helger.jcodemodel.JMod;
 import com.helger.jcodemodel.JPackage;
 import com.helger.jcodemodel.JVar;
+import com.helger.jcodemodel.JTryBlock;
+import com.helger.jcodemodel.JCatchBlock;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -78,7 +80,9 @@ public class SerializerConvertor {
         AbstractJClass resourceClass = codeModel.ref(analyzerResult.getAnalysedClass());
         AbstractJClass ontClassClass = codeModel.ref(OntClass.class);
         AbstractJClass rdfNodeClass = codeModel.ref(org.apache.jena.rdf.model.RDFNode.class);
+        AbstractJClass dtClass = codeModel.ref(javax.xml.datatype.DatatypeFactory.class);
         
+
         // add instance variable
         JFieldVar individual = jc.field(JMod.PROTECTED, individualsClass, "individual");
         //JFieldVar ontModel = jc.field(JMod.PROTECTED, ontModelClass, "ontModel");
@@ -88,6 +92,10 @@ public class SerializerConvertor {
         String ontologyOfClass= classNamespace.replace(className,"");
         JFieldVar uriConstantField = jc.field(JMod.PUBLIC | JMod.FINAL | JMod.STATIC, String.class, "URI", JExpr.lit(classNamespace));
 
+        // add logger
+        AbstractJClass loggerClass =  codeModel.directClass ("java.util.logging.Logger");
+        JInvocation logValue= loggerClass.staticInvoke("getLogger").arg("Model"+className);
+        JFieldVar loggerField = jc.field(JMod.PUBLIC | JMod.STATIC, Logger.class, "logger", logValue);
 
         // add default constructor
         JMethod constr = jc.constructor(JMod.PUBLIC);
@@ -118,7 +126,6 @@ public class SerializerConvertor {
             for (int i = 0; i < typevars.size();i++){
                 String varname=typevars.get(i);
                 String methodname="set"+varname.substring(0, 1).toUpperCase() + varname.substring(1);
-                //String objectname=varname.substring(0, 1).toUpperCase() + varname.substring(1);
                 logger.info("Adding "+varname+" with type "+var_type);
                 if (methodname.equals("setId")) toModel.body().add(resourceInstance.invoke("setId").arg(individual.invoke("getURI")));
                 else {
@@ -129,34 +136,76 @@ public class SerializerConvertor {
                     //check if value is null here.
                     JConditional conditional= toModel.body()._if((value.ne(JExpr._null())));
 
-                    if (var_type.contains("String") || var_type.contains("Literal"))
-                    conditional._then().add(resourceInstance.invoke(methodname).arg(value.invoke("toString")));
-                    else if (var_type.contains("int") || var_type.contains("INT")){
+                    if (var_type.contains("String") || var_type.contains("Literal") )
+                        conditional._then().add(resourceInstance.invoke(methodname).arg(value.invoke("toString")));
+                    else if (var_type.contains("boolean") || var_type.contains("Boolean") ) {
+                        conditional._then().add(resourceInstance.invoke(methodname).arg(value.invoke("asLiteral").invoke("getBoolean")));// TODO check this
+                    }
+                    else if (var_type.contains("int") || var_type.contains("Integer")){
                         //JInvocation toInt= codeModel.ref(Integer.class).staticInvoke("parseInt").arg(value.invoke("toString"));
                         //conditional._then().add(resourceInstance.invoke(methodname).arg(toInt));
-                        conditional._then().add(resourceInstance.invoke(methodname).arg(value.invoke("asLiteral").invoke("getInt")));
+                        final JTryBlock tryBlock = conditional._then()._try();
+                        tryBlock.body().add(resourceInstance.invoke(methodname).arg(value.invoke("asLiteral").invoke("getInt")));
+                        JCatchBlock catchBlock= tryBlock._catch(codeModel.ref(Exception.class));
+                        JVar ex=catchBlock.param("ex");
+                        catchBlock.body().add(loggerField.invoke("log").arg(codeModel.ref(java.util.logging.Level.class).staticRef("WARNING")).arg("Error ").arg(ex));
                     }
-                    else if (var_type.contains("double") || var_type.contains("DOUBLE")){
-                        conditional._then().add(resourceInstance.invoke(methodname).arg(value.invoke("asLiteral").invoke("getDouble")));
-
+                    else if (var_type.contains("double") || var_type.contains("Double")){
+                        final JTryBlock tryBlock = conditional._then()._try();
+                        tryBlock.body().add(resourceInstance.invoke(methodname).arg(value.invoke("asLiteral").invoke("getDouble")));
+                        JCatchBlock catchBlock= tryBlock._catch(codeModel.ref(Exception.class));
+                        JVar ex=catchBlock.param("ex");
+                        catchBlock.body().add(loggerField.invoke("log").arg(codeModel.ref(java.util.logging.Level.class).staticRef("WARNING")).arg("Error ").arg(ex));
                     }
-                    //instance.setObjectName((new ModelObjectName(value)).toModel());
-                    //resourceInstance.invoke(methodname).arg( (TODO:new ObjectName(value)).invoke("toModel"));
+                    else if (var_type.contains("float") || var_type.contains("Float")){
+                        final JTryBlock tryBlock = conditional._then()._try();
+                        tryBlock.body().add(resourceInstance.invoke(methodname).arg(value.invoke("asLiteral").invoke("getFloat")));
+                        JCatchBlock catchBlock= tryBlock._catch(codeModel.ref(Exception.class));
+                        JVar ex=catchBlock.param("ex");
+                        catchBlock.body().add(loggerField.invoke("log").arg(codeModel.ref(java.util.logging.Level.class).staticRef("WARNING")).arg("Error ").arg(ex));
+                    }
+                    else if (var_type.contains("Binary") || var_type.equals("Object")){
+                        final JTryBlock tryBlock = conditional._then()._try();
+                        tryBlock.body().add(resourceInstance.invoke(methodname).arg(value.invoke("asLiteral").invoke("getValue")));
+                        JCatchBlock catchBlock= tryBlock._catch(codeModel.ref(Exception.class));
+                        JVar ex=catchBlock.param("ex");
+                        catchBlock.body().add(loggerField.invoke("log").arg(codeModel.ref(java.util.logging.Level.class).staticRef("WARNING")).arg("Error ").arg(ex));
+                    }
+                    else if ( var_type.contains("date") || var_type.contains("Calendar")){
+                        JTryBlock jtry=conditional._then()._try();
+                        jtry.body().add(resourceInstance.invoke(methodname).arg(
+                                // DatatypeFactory.newInstance().newXMLGregorianCalendar("2014-01-07");
+                                dtClass.staticInvoke("newInstance").invoke("newXMLGregorianCalendar").arg(value.invoke("asLiteral").invoke("getString"))
+                                    ));
+                        JCatchBlock catchBlock = jtry._catch(codeModel.ref(javax.xml.datatype.DatatypeConfigurationException.class));
+                        JVar ex=catchBlock.param("typeEx");
+                        JInvocation jlog= loggerField.invoke("log").arg(codeModel.ref(java.util.logging.Level.class).staticRef("WARNING"))
+                            .arg("Error possibly in date format. It should be yyyy-MM-ddTHH:mm:ss.SSSX for example 2017-04-26T13:04:59.828Z")
+                            .arg(ex);
+                        catchBlock.body().add(jlog);
+                        JCatchBlock catchBlock2 = jtry._catch(codeModel.ref(Exception.class));
+                        JVar ex2=catchBlock2.param("ex2");
+                        catchBlock2.body().add(loggerField.invoke("log").arg(codeModel.ref(java.util.logging.Level.class).staticRef("WARNING")).arg("Error ").arg(ex2));
+                    }
+                    else if (var_type.contains("duration")){
+                        final JTryBlock tryBlock = conditional._then()._try();
+                        tryBlock.body().add(resourceInstance.invoke(methodname).arg(value.invoke("asLiteral").invoke("getValue")));
+                        JCatchBlock catchBlock= tryBlock._catch(codeModel.ref(Exception.class));
+                        JVar ex=catchBlock.param("ex");
+                        catchBlock.body().add(loggerField.invoke("log").arg(codeModel.ref(java.util.logging.Level.class).staticRef("WARNING")).arg("Error ").arg(ex));
+                    }
                     else {
                         logger.info("ADDING Object property"+var_type);
-                        //try{
-                            JVar rs=conditional._then().decl(resourcesClass, "rs", value.invoke("asResource"));
-                            JVar ind=conditional._then().decl(individualsClass, "ind", ont.invoke("getIndividual").arg(rs.invoke("getURI")));
-                            JDirectClass  objectClass= codeModel.directClass(jp.name()+"."+"Model"+var_type);
-                            JVar obj=conditional._then().decl(objectClass, "obj", JExpr._new(objectClass).arg(ind));
-                            conditional._then().add(resourceInstance.invoke(methodname).arg(obj.invoke("toModel")));
-                        //}catch(ClassNotFoundException e){logger.info(e.getMessage());}
+                        JVar rs=conditional._then().decl(resourcesClass, "rs", value.invoke("asResource"));
+                        JVar ind=conditional._then().decl(individualsClass, "ind", ont.invoke("getIndividual").arg(rs.invoke("getURI")));
+                        JDirectClass  objectClass= codeModel.directClass(jp.name()+"."+"Model"+var_type);
+                        JVar obj=conditional._then().decl(objectClass, "obj", JExpr._new(objectClass).arg(ind));
+                        conditional._then().add(resourceInstance.invoke(methodname).arg(obj.invoke("toModel")));
                     }
                 }
             }
         }
         toModel.body()._return(resourceInstance);
-             
         codeModel.build(new File(targetDirectory));
         
     }

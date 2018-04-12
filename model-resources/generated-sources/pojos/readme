@@ -1,1 +1,3 @@
 Copy in this directory the pojos (java classes) generated from the ontology (or XSD - but not recommended).
+
+WrappedIndividual objects are generated when ontology properties have undefined range. Use this class if pojos do not compile.

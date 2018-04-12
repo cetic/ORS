@@ -7,7 +7,6 @@ package be.cetic.ors.ontologybinding.generic;
 
 import be.cetic.ors.ontologybinding.generic.exception.ClassURIException;
 import be.cetic.ors.ontologybinding.generic.exception.ResourceNotFoundException;
-import be.cetic.ors.ontologybinding.generic.exception.XmlAnalysisException;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;

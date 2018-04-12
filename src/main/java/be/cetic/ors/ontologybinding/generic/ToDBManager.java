@@ -27,9 +27,8 @@ import org.apache.jena.reasoner.Reasoner;
 /**
  *
  * @author fs Contains all generic methods for creating java classes for
- * converting to RDF. This one implement rdf Sserver TODO: Currently
- * incomplete, implement all these methods. (go to previous project and copy
- * paste the code.) Uses the Jena Librarvariabley
+ * converting to RDF. This one implement rdf server. 
+ * Uses the Jena Library
  */
 public class ToDBManager implements IToRDFManager {
 

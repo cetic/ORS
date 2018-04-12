@@ -129,7 +129,7 @@ public class WSGenerator extends Generator {
         methodparam.annotate(codeModel.ref("javax.ws.rs.QueryParam")).param("value", "id");
         registerMethod.annotate(codeModel.ref("javax.ws.rs.Path")).param("value", "/");
         registerMethod.annotate(codeModel.ref("javax.ws.rs.GET"));
-        registerMethod.annotate(codeModel.ref("javax.ws.rs.Consumes")).param("value", "application/xml");
+        registerMethod.annotate(codeModel.ref("javax.ws.rs.Consumes")).param("value", this.serializationMethod);
 
         //try catch
         JTryBlock tryBlock = registerMethod.body()._try();
@@ -159,7 +159,7 @@ public class WSGenerator extends Generator {
         JVar generic = tryBlock.body().decl(aGeneric, "generic", rhsAssignmentExpression);
 
         // return method
-        JInvocation responseInvoke = wsResponse.staticInvoke("ok").arg(generic).arg("application/xml");
+        JInvocation responseInvoke = wsResponse.staticInvoke("ok").arg(generic).arg(this.serializationMethod);
         tryBlock.body()._return(responseInvoke.invoke("build"));
         
         JCatchBlock ioException = tryBlock._catch(codeModel.ref(IOException.class)); //rdfstore
@@ -168,8 +168,8 @@ public class WSGenerator extends Generator {
         buildCatchExceptionReturn(URIsyntaxException, wsResponse, "INTERNAL_SERVER_ERROR");
         JCatchBlock badRequestException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.BadRequestException")); //badRequest
         buildCatchExceptionReturn(badRequestException, wsResponse, "INTERNAL_SERVER_ERROR");
-        JCatchBlock xmlAnalysisException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.XmlAnalysisException")); //rdfstore
-        buildCatchExceptionReturn(xmlAnalysisException, wsResponse, "INTERNAL_SERVER_ERROR");
+        JCatchBlock serializationAnalysisException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.SerializationAnalysisException")); //rdfstore
+        buildCatchExceptionReturn(serializationAnalysisException, wsResponse, "INTERNAL_SERVER_ERROR");
         JCatchBlock classURIException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.ClassURIException")); //rdfstore
         buildCatchExceptionReturn(classURIException, wsResponse, "INTERNAL_SERVER_ERROR");
         JCatchBlock exception = tryBlock._catch(codeModel.ref(Exception.class));// not defined error -> HTTP 500
@@ -199,7 +199,7 @@ public class WSGenerator extends Generator {
         //annotation
         registerMethod.annotate(codeModel.ref("javax.ws.rs.Path")).param("value", "/");
         registerMethod.annotate(codeModel.ref("javax.ws.rs.POST"));
-        registerMethod.annotate(codeModel.ref("javax.ws.rs.Consumes")).param("value", "application/xml");
+        registerMethod.annotate(codeModel.ref("javax.ws.rs.Consumes")).param("value", this.serializationMethod);
 
         //try catch
         JTryBlock tryBlock = registerMethod.body()._try();
@@ -222,8 +222,8 @@ public class WSGenerator extends Generator {
         buildCatchExceptionReturn(URIsyntaxException, wsResponse, "INTERNAL_SERVER_ERROR");
         JCatchBlock badRequestException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.BadRequestException")); //badRequest
         buildCatchExceptionReturn(badRequestException, wsResponse, "INTERNAL_SERVER_ERROR");
-        JCatchBlock xmlAnalysisException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.XmlAnalysisException")); //rdfstore
-        buildCatchExceptionReturn(xmlAnalysisException, wsResponse, "INTERNAL_SERVER_ERROR");
+        JCatchBlock serializationAnalysisException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.SerializationAnalysisException")); //rdfstore
+        buildCatchExceptionReturn(serializationAnalysisException, wsResponse, "INTERNAL_SERVER_ERROR");
         JCatchBlock classURIException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.ClassURIException")); //rdfstore
         buildCatchExceptionReturn(classURIException, wsResponse, "INTERNAL_SERVER_ERROR");
         JCatchBlock exception = tryBlock._catch(codeModel.ref(Exception.class));// not defined error -> HTTP 500
@@ -277,8 +277,8 @@ public class WSGenerator extends Generator {
         //annotation
         registerMethod.annotate(codeModel.ref("javax.ws.rs.Path")).param("value", "/query");
         registerMethod.annotate(codeModel.ref("javax.ws.rs.PUT"));
-        registerMethod.annotate(codeModel.ref("javax.ws.rs.Consumes")).param("value", "application/xml");
-        registerMethod.annotate(codeModel.ref("javax.ws.rs.Produces")).param("value", "application/xml");
+        registerMethod.annotate(codeModel.ref("javax.ws.rs.Consumes")).param("value", this.serializationMethod);
+        registerMethod.annotate(codeModel.ref("javax.ws.rs.Produces")).param("value", this.serializationMethod);
 
         //ArrayList initialisation
         JVar uris = registerMethod.body().decl(arrayListOfjc, "uris");
@@ -287,7 +287,7 @@ public class WSGenerator extends Generator {
         //try catch
         JTryBlock tryBlock = registerMethod.body()._try();
         
-        //TODO: queryManager to implement
+        //queryManager  is currently a generic class. Though this may change depending or requirements 
        
         // return method
         JInvocation responseInvoke = wsResponse.staticInvoke("ok").arg(uris);
@@ -299,7 +299,7 @@ public class WSGenerator extends Generator {
 //        buildCatchExceptionReturn(URIsyntaxException, wsResponse, "INTERNAL_SERVER_ERROR");
 //        JCatchBlock badRequestException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.BadRequestException")); //badRequest
 //        buildCatchExceptionReturn(badRequestException, wsResponse, "INTERNAL_SERVER_ERROR");
-//        JCatchBlock xmlAnalysisException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.XmlAnalysisException")); //rdfstore
+//        JCatchBlock smlAnalysisException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.XmlAnalysisException")); //rdfstore
 //        buildCatchExceptionReturn(xmlAnalysisException, wsResponse, "INTERNAL_SERVER_ERROR");
 //        JCatchBlock classURIException = tryBlock._catch(codeModel.ref("be.cetic.ors.ontologybinding.generic.exception.ClassURIException")); //rdfstore
 //        buildCatchExceptionReturn(classURIException, wsResponse, "INTERNAL_SERVER_ERROR");

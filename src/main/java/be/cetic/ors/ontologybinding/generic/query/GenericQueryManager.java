@@ -6,6 +6,7 @@
 package be.cetic.ors.ontologybinding.generic.query;
 
 import generated.*;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ public abstract class GenericQueryManager {
     List<String> ids = new ArrayList<>();
     List<String> fields;
     String selectFields="";//Always leave a space after the variable name
+    public static List<String> validOperator = Arrays.asList("in", "not in", "textsearch");
 
     private static final Logger logger = LoggerFactory.getLogger(GenericQueryManager.class);
 

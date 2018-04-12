@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>be.cetic.ors</groupId>
     <artifactId>ORS</artifactId>
-    <version>0.2</version>
+    <version>0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
@@ -114,9 +114,13 @@
                                 <mkdir dir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/query"/>
                                 <mkdir dir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/generic"/>
                                 
-                                <!-- copy pojo for analysis -->
+                                <!-- copy generated pojos for analysis -->
                                 <copy todir="./target/generated_pojos">
                                     <fileset dir="./model-resources/generated-sources/pojos/" includes="**/*" />
+                                </copy>
+                                <!-- generic pojos -->
+                                <copy todir="./target/generated_pojos">
+                                    <fileset dir="./src/main/java/be/cetic/ors/ontologybinding/generic/pojos/" includes="**/*" />
                                 </copy>
                                 <!-- copy pojo for release -->
                                 <copy todir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/pojo">

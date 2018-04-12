@@ -22,6 +22,7 @@ public class Generator {
 
      String targetPackage;
      String targetDirectory;
+     String serializationMethod;
 
     private static Logger logger = Logger.getLogger(Generator.class.getName());
 
@@ -37,6 +38,8 @@ public class Generator {
 
         //This specifies the directory where the java files will be put
         targetDirectory = constants.getTARGET_DIRECTORY();
+
+        serializationMethod= constants.getSERIALIZATION();
     }
     
 }

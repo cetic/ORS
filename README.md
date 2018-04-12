@@ -13,7 +13,7 @@ The Ontology Repository core and its REST API are designed to be domain independ
 ### 1.1 Supported Features
 
 * Two-way approach for building the Data Model
-	- from its Ontology formal description (OWL) using the [ORS-Protege-plugin](https://https://github.com/cetic/ORS-Protege-plugin).
+	- from its Ontology formal description (OWL) using the [ORS-Protege-plugin](https://github.com/cetic/ORS-Protege-plugin).
 	- from XML Schema (XSD) 
 * Dynamically update the Data Model by changing the OWL or XSD description 
 	- avoids the need to recompile the code
@@ -35,8 +35,8 @@ The Ontology Repository core and its REST API are designed to be domain independ
 
 The ORS consists of the following services and supporting porjects: 
 * The core Ontology Repository Services project that consists of the ORS WS Application, the RDF repository and SPARQL server. 
-* The [ORS-Protege-plugin](https://https://github.com/cetic/ORS-Protege-plugin) component that generates the model from the ontology.
-* The [ORS-GUI](https://https://github.com/cetic/ORS-GUI) project which is the component that provides the frontend services.
+* The [ORS-Protege-plugin](/https://github.com/cetic/ORS-Protege-plugin) component that generates the model from the ontology.
+* The [ORS-GUI](https://github.com/cetic/ORS-GUI) project which is the component that provides the frontend services.
 
 The following architecture diagram provides a component view of the ORS.
 
@@ -138,8 +138,8 @@ The top level structure of ORS is:
 
 ### 3.2 POJO generation
 
-* From XSD: if the project has developed an XSD (some cases useful for defining the WS API), it can be used for generating the POJOS using xjc
-* From OWL: Use the [ORS-Protege-plugin](https://https://github.com/cetic/ORS-Protege-plugin) 
+* From XSD: if the project has developed an XSD (some cases useful for defining the WS API), it can be used for generating the POJOS using [xjc](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/xjc.html)
+* From OWL: Use the [ORS-Protege-plugin](https://github.com/cetic/ORS-Protege-plugin) 
 * Manually: create a POJO for each OWL class with all the prooperties as java class members and write the get/set operations. Add the @XMLRootElement annotation on each java class definition.
 
 NOTE: Class names of POJOS must follow the java class name conventions and rules (for example cannot use reserved java names). If conventions and rules are not followed the POJOs will not be used correctly in the generated project or not at all! This is likely to affect the names used in XSD schema elements or OWL classes.
@@ -302,7 +302,7 @@ POST with message body:
 
 ### 3.7 ORS GUI
 
-For feature status and instructions see [ORS-GUI](https://https://github.com/cetic/ORS-GUI)
+For feature status and instructions see [ORS-GUI](https://github.com/cetic/ORS-GUI)
 
 ### 3.8 Known issues
 

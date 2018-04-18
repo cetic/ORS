@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>be.cetic.ors</groupId>
     <artifactId>ORS</artifactId>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.3.0</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>

@@ -270,7 +270,7 @@ GET http://[host]:[port]/repository/api/query/operators
 
 On the endpoint http://[host]:[port]/repository/api/query
 
-POST with message body:
+PUT with message body:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
  <query xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"

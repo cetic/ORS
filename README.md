@@ -28,8 +28,8 @@ The Ontology Repository core and its REST API are designed to be domain independ
 ### 1.2 Next release features
 
 * Improved Frontend support.
-* Imporitng graphs from JSON-LD.
-* Exporitng graphs to JSON-LD.
+* Importing graphs from JSON-LD.
+* Exporting graphs to JSON-LD.
 
 ## 2 Architecture
 

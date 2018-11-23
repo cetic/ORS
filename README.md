@@ -1,4 +1,4 @@
-# ORS
+#cwparmigianno ORS
 
 ## Ontology Repository Services
 
@@ -35,9 +35,9 @@ The ORS consists of the following services and supporting porjects:
 * The [ORS-Protege-plugin](/https://github.com/cetic/ORS-Protege-plugin) component that generates the model from the ontology.
 * The [ORS-GUI](https://github.com/cetic/ORS-GUI) project which is the component that provides the frontend services.
 
-The following architecture diagram provides a component view of the ORS. TODO: upload diagram
+The following architecture diagram provides a component view of the ORS.
 
-![alt text](https://github.com/cetic/ORS/blob/master/model-resources/resources/ORS-20181123.png "ORS Architecture")
+![alt text](https://github.com/cetic/ORS/blob/master/src/resources/ORS-20181123.png "ORS Architecture")
 
 ### 2.1 The WS Application 
 
@@ -196,7 +196,6 @@ With a JSON message body an example is given bellow.
     ],
     "id": "http://example.org/margarita1",
     "name":"Margarigta"
-    ``` other properties ...
 }
 ```
 

@@ -1,0 +1,5 @@
+rdfDataEndpoint = http://localhost:18080/fuseki/redirnet/data
+rdfDataEndpointUpdate = http://localhost:18080/fuseki/redirnet/update
+rdfDataEndpointQuery = http://localhost:18080/fuseki/redirnet?query
+repositoryModel = be.cetic.ors.ontologybinding.generic.query.database.fuseki_model.FusekiSparqlModel
+reasoner = RDFS

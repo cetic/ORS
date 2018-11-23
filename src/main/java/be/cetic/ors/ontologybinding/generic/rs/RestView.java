@@ -36,12 +36,12 @@ public class RestView {
     @Path("/classes")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response classes() throws IOException {
+    public Response classes(@DefaultValue("") @QueryParam("uri") String uri) throws IOException {
         try{
             logger.info("Getting classes");
 
             ViewManager vm = new ViewManager();
-            ArrayList<ClassView> values=vm.listClasses();
+            ArrayList<ClassView> values=vm.listClasses(uri);
 
             // Text response
             //String classes = Arrays.toString(values.toArray(new String[values.size()])).replaceAll("^.|.$", "");
@@ -65,12 +65,12 @@ public class RestView {
     @Path("/classnames")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response classNames() throws IOException {
+    public Response classNames( @DefaultValue("") @QueryParam("uri") String uri) throws IOException {
         try{
             logger.info("Getting classes");
 
             ViewManager vm = new ViewManager();
-            ArrayList<String> values=vm.listClassNames();
+            ArrayList<String> values=vm.listClassNames(uri);
 
             // Text response
             //String classes = Arrays.toString(values.toArray(new String[values.size()])).replaceAll("^.|.$", "");
@@ -90,13 +90,14 @@ public class RestView {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     //  @Override
-    public Response properites(@PathParam("classname") String classname, @QueryParam("namespace") String namespace,  @DefaultValue("no") @QueryParam("inherited") String inherited) throws IOException {
+    public Response properties(@DefaultValue("") @QueryParam("uri") String uri, @PathParam("classname") String classname, @QueryParam("namespace") String namespace,   @DefaultValue("no") @QueryParam("inherited") String inherited) 
+        throws IOException {
         try {
             logger.info("Properties of "+classname+" with "+namespace+" inherited? "+inherited);
             ViewManager vm = new ViewManager();
             boolean direct=false;
-            if (!inherited.equals("no"))direct=true;
-            ArrayList<PropertyView> values=vm.listProperties(namespace,classname,direct);
+            if (inherited.equals("no"))direct=true;
+            ArrayList<PropertyView> values=vm.listProperties(uri,namespace,classname,direct);
 
             //GenericEntity<ArrayList<PropertyView>>generic = new GenericEntity<ArrayList<PropertyView>>(values) { } ;
             return javax.ws.rs.core.Response.ok(values, "application/json").build();

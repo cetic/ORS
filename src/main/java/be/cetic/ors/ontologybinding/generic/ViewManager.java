@@ -23,10 +23,12 @@ public class ViewManager extends ToDBManager {
     {
     }
 
-     public ArrayList<ClassView> listClasses()
+     public ArrayList<ClassView> listClasses(String uri)
      {
          ArrayList<ClassView> classList = new ArrayList<ClassView>();
-         ExtendedIterator<OntClass> rootClassIt = ontmodel.listHierarchyRootClasses();
+         ExtendedIterator<OntClass> rootClassIt;
+         if (uri.length()>1)rootClassIt = this.getOntModel(uri).listHierarchyRootClasses();
+         else rootClassIt = this.getOntModel().listHierarchyRootClasses();
          while (rootClassIt.hasNext() ) {
             classList.add(parseClass(rootClassIt.next()));
          }
@@ -61,10 +63,12 @@ public class ViewManager extends ToDBManager {
      }
 
 
-    public ArrayList<String> listClassNames()
+    public ArrayList<String> listClassNames(String uri)
     {
         ArrayList<String> classList = new ArrayList<String>();
-        ExtendedIterator<OntClass> typeClassIt = ontmodel.listNamedClasses();
+        ExtendedIterator<OntClass> typeClassIt;
+        if (uri.length()>1) typeClassIt = this.getOntModel(uri).listNamedClasses();
+        else typeClassIt = this.getOntModel().listNamedClasses();
         while (typeClassIt.hasNext()) {
             OntClass cl = typeClassIt.next();
             classList.add(cl.getURI());
@@ -74,15 +78,17 @@ public class ViewManager extends ToDBManager {
         return classList;
     }
 
-    public ArrayList<PropertyView> listProperties(String namespace, String classname, boolean direct)
+    public ArrayList<PropertyView> listProperties(String graphuri, String namespace, String classname, boolean direct)
     {
         String uri=namespace+classname;
         if (!uri.startsWith("http")){
-            uri=ontmodel.getNsPrefixURI("")+classname;
+            uri=this.getOntModel().getNsPrefixURI("")+classname;
         }
         logger.info("Properties for class:"+uri);
         ArrayList<PropertyView> propertyList = new ArrayList<PropertyView>();
-        OntClass typeClass = ontmodel.getOntClass(uri);
+        OntClass typeClass; 
+        if (graphuri.length()>1) typeClass = this.getOntModel(graphuri).getOntClass(uri);
+        else typeClass = this.getOntModel().getOntClass(uri);
         if (typeClass == null) {
             logger.info("Typeclass is null!!!");
             //typeClass = ontmodel.createClass(uri);

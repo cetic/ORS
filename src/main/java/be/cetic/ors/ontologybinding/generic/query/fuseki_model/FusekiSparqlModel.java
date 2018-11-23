@@ -56,6 +56,7 @@ public class FusekiSparqlModel extends SparqlModel{
         ArrayList values = new ArrayList();
         List<Binding> bindings = this.getResults().getBindings();
         for (Binding binding : bindings) {
+            if (binding.getGraph()!=null) values.add(binding.getGraph().getValue());
             if (binding.getType()!=null) values.add(binding.getType().getValue());
             if (binding.getSubject()!=null)values.add(binding.getSubject().getValue());
             if (binding.getPredicate()!=null)values.add(binding.getPredicate().getValue());

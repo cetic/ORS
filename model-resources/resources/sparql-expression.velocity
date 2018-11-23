@@ -1,1 +1,0 @@
-FILTER(REGEX(str(?uri), '^http://www.semanticweb.org/ontologies/2015/0/redirnet-core-ontology#$value','i')).

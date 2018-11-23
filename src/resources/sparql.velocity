@@ -1,0 +1,17 @@
+PREFIX propertyNs: <$propertyNs>
+PREFIX resourceNs: <$resourceNs>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?uri ?property ?label WHERE {
+
+    #Select
+    ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> $SelectNs.
+    
+    #Filter properties
+    ?uri propertyNs:$propertyName ?property. 
+    filter (resourceNs:$resourceName $verb (?property)).  
+
+    optional{
+        ?uri rdfs:label ?label .
+    }
+}

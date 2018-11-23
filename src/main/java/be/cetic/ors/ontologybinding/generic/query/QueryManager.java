@@ -5,7 +5,8 @@
  */
 package be.cetic.ors.ontologybinding.generic.query;
 
-import generated.*;
+import  be.cetic.ors.ontologybinding.generic.exception.QueryManagerException;
+import be.cetic.ors.ontologybinding.generic.query.schema.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.ArrayList;

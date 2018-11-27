@@ -1,4 +1,4 @@
-#cwparmigianno ORS
+#ORS
 
 ## Ontology Repository Services
 

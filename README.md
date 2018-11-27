@@ -23,8 +23,8 @@ Addtionally the generated web service REST API can be easily extended and custom
 * Support for RDF4J repository and ONTOP plugin for accessing individuals from relational databases.
 * Configurable serialization of documents to XML or JSON.
 * Generated schema for Frontend support.
-* Imporitng graphs from JSON-LD.
-* Exporitng graphs to JSON-LD.
+* Importing graphs from JSON-LD.
+* Exporting graphs to JSON-LD.
 
 ## 2 Architecture
 

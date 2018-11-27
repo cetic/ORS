@@ -30,7 +30,7 @@ Addtionally the generated web service REST API can be easily extended and custom
 
 The ORS consists of the following services and supporting porjects: 
 * The core Ontology Repository Services project that consists of the ORS WS Application, the RDF repository and SPARQL server. 
-* The [ORS-Protege-plugin](/https://github.com/cetic/ORS-Protege-plugin) component that generates the model from the ontology.
+* The [ORS-Protege-plugin](https://github.com/cetic/ORS-Protege-plugin) component that generates the model from the ontology.
 * The [ORS-GUI](https://github.com/cetic/ORS-GUI) project which is the component that provides the frontend services.
 
 The following architecture diagram provides a component view of the ORS.

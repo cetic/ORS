@@ -1,3 +1,0 @@
-#Filter properties
-?uri propertyNs:$propertyName ?property. 
-filter (resourceNs:$resourceName $verb (?property)).

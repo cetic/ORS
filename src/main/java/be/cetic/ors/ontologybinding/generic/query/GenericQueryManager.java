@@ -5,7 +5,8 @@
  */
 package be.cetic.ors.ontologybinding.generic.query;
 
-import generated.*;
+import be.cetic.ors.ontologybinding.generic.query.schema.*;
+import  be.cetic.ors.ontologybinding.generic.exception.QueryManagerException;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,10 +78,11 @@ public abstract class GenericQueryManager {
      * @throws IOException
      * @throws SparqlManagerException
      */
-    public String generateSparqlQuery() throws QueryManagerException {
+    public String generateSparqlQuery(String graphuri) throws QueryManagerException {
         logger.info("Creating Sparql query");
+        if (graphuri.length()>1) graphuri="FROM <"+graphuri+"> \n";
         StringBuilder sb = new StringBuilder("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n");
-        StringBuilder wb = new StringBuilder( " WHERE {\n");
+        StringBuilder wb = new StringBuilder( graphuri+" WHERE {\n");
         wb.append(sparqlFields());
         wb.append(sparqlIndividual());
         wb.append(sparqlExpression());

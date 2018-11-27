@@ -24,6 +24,8 @@ public class Binding {
     private Var predicate;
     @JsonProperty("subject")
     private Var subject;
+    @JsonProperty("graph")
+    private Var graph;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -55,6 +57,16 @@ public class Binding {
     @JsonProperty("subject")
     public void setSubject(Var subject) {
         this.subject = subject;
+    }
+
+    @JsonProperty("graph")
+    public Var getGraph() {
+        return graph;
+    }
+
+    @JsonProperty("grap")
+    public void setGraph(Var graph) {
+        this.graph = graph;
     }
 
     @JsonAnyGetter

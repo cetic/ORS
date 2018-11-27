@@ -1,0 +1,37 @@
+{
+    "prettyPrint" : true,
+    "openAPI": {
+        "info": {
+            "version": "0.4",
+            "title": "Repository API",
+            "description": "This is the API for the Ontology Repositroy Services of the EESP. The EESP application is being developed for the Evidence2e-Codex project. (c) 2018 CETIC and the Evidence2e-Codex consortium.",
+            "termsOfService": "https://github.com/cetic/ORS/",
+            "contact": {
+                "email": "nikolaos.matskanis@cetic.be"
+            },
+            "license": {
+                "name": "Apache 2.0",
+                "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+            }
+        },
+        "servers":[
+            {
+                "url":"/repository/api",
+                "description":"This server"
+            },
+            {
+                "url":"{endpoint}/{basePath}",
+                "description":"Remote server",
+                "variables": {
+                    "endpoint": {
+                        "default": "http://localhost:18080"
+                    },
+                    "basePath": {
+                        "default": "repository/api"
+                    }
+                }
+            }
+        ]
+    }
+}
+

@@ -15,6 +15,7 @@ public class Binding {
     private Type object;
     private Type predicate;
     private Type subject;
+    private Type graph;
 
     // must be generic
     /*private Property property;
@@ -45,6 +46,14 @@ public class Binding {
 
     public void setSubject(Type subject) {
         this.subject = subject;
+    }
+
+    public Type getGraph() {
+        return graph;
+    }
+
+    public void setGraph(Type graph) {
+        this.graph = graph;
     }
 
 

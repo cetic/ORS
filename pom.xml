@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>be.cetic.ors</groupId>
     <artifactId>ORS</artifactId>
-    <version>0.3.0</version>
+    <version>0.4</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
@@ -19,19 +19,25 @@
         <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>jena</artifactId>
-            <version>3.0.0</version>
+            <version>3.7.0</version>
             <type>pom</type>
         </dependency>
          <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>jena-core</artifactId>
-            <version>3.0.0</version>
+            <version>3.7.0</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>jena-arq</artifactId>
-            <version>3.0.0</version>
+            <version>3.7.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-tdb2</artifactId>
+            <version>3.7.0</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -42,12 +48,39 @@
           <dependency> <!-- jersey 2 http://stackoverflow.com/questions/22022114/org-glassfish-jersey-servlet-servletcontainer-classnotfoundexception -->
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
-            <version>2.17</version>
+            <version>2.27</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-multipart</artifactId>
-            <version>2.17</version>
+            <version>2.27</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>2.27</version>
+        </dependency>
+        <dependency>
+             <groupId>org.glassfish.jersey.inject</groupId>
+             <artifactId>jersey-hk2</artifactId>
+             <version>2.27</version>
+         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.glassfish/javax.json -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>com.io-informatics.oss</groupId>
+            <artifactId>jackson-jsonld</artifactId>
+            <version>0.1.1</version>
+        </dependency>
+        <!-- JSONLD library -->
+        <dependency>
+            <groupId>com.github.jsonld-java</groupId>
+            <artifactId>jsonld-java</artifactId>
+            <version>0.12.0</version>
         </dependency>
     </dependencies>
     <properties>
@@ -70,7 +103,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>./model-resources/generated-sources/</source>
+                                <source>./generated/</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -108,53 +141,65 @@
 
                             <tasks>
                                 <echo message="Creating generated pojos and model output directories"/>
-                                <mkdir dir="./target/generated_pojos"/>
-                                <mkdir dir="./target/generated_model"/>
-                                <mkdir dir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/pojo"/>
-                                <mkdir dir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/query"/>
-                                <mkdir dir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/generic"/>
+                                <!--mkdir dir="./target/generated"/-->
+                                <mkdir dir="./target/ors_project"/>
+                                <!--mkdir dir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/pojo"/-->
+                                <!--mkdir dir="./target/ors_project/src/main/java/be/cetic/ors/ontologybinding/query"/-->
+                                <mkdir dir="./target/ors_project/src/main/java/generic/be/cetic/ors/ontologybinding"/>
                                 
-                                <!-- copy generated pojos for analysis -->
-                                <copy todir="./target/generated_pojos">
-                                    <fileset dir="./model-resources/generated-sources/pojos/" includes="**/*" />
-                                </copy>
-                                <!-- generic pojos -->
-                                <copy todir="./target/generated_pojos">
-                                    <fileset dir="./src/main/java/be/cetic/ors/ontologybinding/generic/pojos/" includes="**/*" />
-                                </copy>
-                                <!-- copy pojo for release -->
-                                <copy todir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/pojo">
-                                    <fileset dir="./model-resources/generated-sources/pojos/" includes="**/*.java" />
-                                </copy>
+                                <!-- copy all generated code  for analysis 
+                                <copy todir="./target/generated">
+                                    <fileset dir="./resources/generated/" includes="**/*" />
+                                </copy> -->
+                                <!-- generic pojos 
+                                <copy todir="./target/generated/pojos">
+                                    <fileset dir="./src/main/java/be/cetic/ors/ontologybinding/generic/pojo/" includes="**/*" />
+                                </copy> -->
+                                <!-- copy generated for release -->
+                                <copy todir="./target/ors_project/src/main/java/generated/">
+                                    <fileset dir="./src/generated/" includes="**/*.java" excludes="**/ApplicationConfig.java" />
+                                </copy> 
                                 <!-- copy query files for release -->
-                                <copy todir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/query_model">
-                                    <fileset dir="./model-resources/generated-sources/generated/" includes="**/*.java" />
-                                </copy>
+                                <!--copy todir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/query_model">
+                                    <fileset dir="./resources/generated/generated/" includes="**/*.java" />
+                                </copy-->
                                 
                                 <!-- copy generic java file for release src -->
-                                <copy todir="./target/generated_model/src/main/java/be/cetic/ors/ontologybinding/generic">
-                                    <fileset dir="./src/main/java/be/cetic/ors/ontologybinding/generic" includes="**/*.java" />
+                                <copy todir="./target/ors_project/src/main/java/generic/be/cetic/ors/ontologybinding/">
+                                    <fileset dir="./src/main/java//be/cetic/ors/ontologybinding/generic" includes="**/*.java" excludes="**/ApplicationConfig.java"  />
                                 </copy>
                                 
                                 <!-- copy generic stuff for release - POM.XML -->
-                                <copy todir="./target/generated_model/">
-                                    <fileset dir="./model-resources/resources/" includes="pom.xml" />
+                                <copy todir="./target/ors_project/">
+                                    <fileset dir="./src/resources/" includes="pom.xml" />
                                 </copy>
-                                <!-- copy generic stuff for release - generate script -->
+                                <copy todir="./target/ors_project/src/main/java/generic/be/cetic/ors/ontologybinding/rs/">
+                                    <fileset dir="./src/generated/be/cetic/ors/ontologybinding/rs/" includes="ApplicationConfig.java" />
+                                </copy>
+                                <!-- copy generic stuff for release - generate script 
                                 <copy todir="./target/">
-                                    <fileset dir="./model-resources/resources/" includes="generate.sh" />
-                                </copy>
+                                    <fileset dir="./resources/resources/" includes="generate.sh" />
+                                </copy> -->
                                 <!-- copy generic stuff for release - *.PROPERTIES -->
-                                <copy todir="./target/generated_model/src/main/resources/">
-                                    <fileset dir="./model-resources/resources/" includes="*.properties" />
+                                <copy todir="./target/ors_project/src/main/resources/">
+                                    <fileset dir="./src/resources/" includes="*.properties" />
                                 </copy>
                                 <!-- copy generic stuff for release - *.VELOCITY -->
-                                <copy todir="./target/generated_model/src/main/resources/">
-                                    <fileset dir="./model-resources/resources/" includes="*.velocity" />
+                                <copy todir="./target/ors_project/src/main/resources/">
+                                    <fileset dir="./src/resources/" includes="*.velocity" />
                                 </copy>
                                 <!-- copy generic stuff for release - web.xml -->
-                                <copy todir="./target/generated_model/src/main/webapp/WEB-INF/">
-                                    <fileset dir="./model-resources/resources/" includes="web.xml" />
+                                <copy todir="./target/ors_project/src/main/webapp/WEB-INF/">
+                                    <fileset dir="./src/resources/" includes="web.xml" />
+                                </copy>
+                                <copy todir="./target/ors_project/src/main/webapp/WEB-INF/">
+                                    <fileset dir="./src/resources/" includes="openapi-configuration.json" />
+                                </copy>
+                                <copy todir="./target/ors_project/src/main/webapp/">
+                                    <fileset dir="./src/resources/" includes="index.jsp" />
+                                </copy>
+                                <copy todir="./target/ors_project/src/main/webapp/">
+                                    <fileset dir="./src/resources/third-party" includes="swagger/*" />
                                 </copy>
                                
                             </tasks>

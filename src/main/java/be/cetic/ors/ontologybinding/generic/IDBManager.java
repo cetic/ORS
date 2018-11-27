@@ -18,7 +18,7 @@ import org.apache.jena.query.DatasetAccessor;
  */
 public interface IDBManager {
 
-    String namespace = "http://www.semanticweb.org/ontologies/2017/ors-core-ontology#";
+    String NAMESPACE = "http://www.semanticweb.org/ontologies/2017/ors-core-ontology#";
 
     /**
      * Once you have finished to edit your model, you can store it back to DB

@@ -5,6 +5,7 @@
  */
 package be.cetic.ors.ontologybinding.generic.query;
 
+import be.cetic.ors.ontologybinding.generic.exception.SparqlManagerException;
 import be.cetic.ors.ontologybinding.generic.PropertiesManager;
 import be.cetic.ors.ontologybinding.generic.query.rdf4j_model.RDF4JSparqlModel;
 import be.cetic.ors.ontologybinding.generic.query.fuseki_model.FusekiSparqlModel;
@@ -165,13 +166,18 @@ public class SparqlManager  {
      * Currently using the Fuseki or RDF4J models depending on configuration properties.
      * TODO: Change if needed to a model for each repository type.
      */
-    public SparqlModel selectDistinctProperties() throws IOException, SparqlManagerException {
+    public SparqlModel selectDistinctProperties(String graphuri, String classURI) throws IOException, SparqlManagerException {
 
+        String graph="";
+        if (graphuri.length()>1) graph="FROM <"+graphuri+">\n";
         // creating sparql query
         String query = "SELECT DISTINCT ?predicate \n"
-                + "WHERE { \n"
-                + "    ?subject ?predicate ?object .\n"
-                + "}";
+                     + graph
+                     + "WHERE { \n";
+        if (classURI!=null)
+        query +=       "    ?subject a <"+classURI+"> .\n";
+        query +=       "    ?subject ?predicate ?object .\n"
+                     + "}";
 
         return sparqlQuery(query);
     }
@@ -180,10 +186,13 @@ public class SparqlManager  {
      * Currently using the Fuseki or RDF4J models depending on configuration properties.
      * TODO: Change if needed to a model for each repository type.
      */
-    public SparqlModel selectDistinctFields() throws IOException, SparqlManagerException {
+    public SparqlModel selectDistinctFields(String graphuri) throws IOException, SparqlManagerException {
 
+        String graph="";
+        if (graphuri.length()>1) graph="FROM <"+graphuri+">\n";
         // creating sparql query
         String query = "SELECT DISTINCT ?subject \n"
+                + graph
                 + "WHERE { \n"
                 + " { ?subject <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>}\n"
                 + " UNION "
@@ -191,6 +200,16 @@ public class SparqlManager  {
                 + "}";
 
         return sparqlQuery(query);
+    }
+
+
+    /** 
+     * Used by the Document manager to retrieve a list of available named graphs aka documents in the repository.
+     *
+     */
+    public SparqlModel selectDistinctGraphs() throws IOException, SparqlManagerException {
+        String query= "SELECT DISTINCT ?graph WHERE { GRAPH ?graph { ?s ?p ?o } }";
+            return sparqlQuery(query);
     }
 
     /**

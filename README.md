@@ -1,4 +1,4 @@
-## Ontology Repository Services
+# Ontology Repository Services
 
 The Ontology Repository Services (ORS) is a tool for generating web services for storing and managing information of a domain and its metadata.
 The information stored in ORS is based on a formal data model that can be designed and built using an OWL-RDF ontology model. 
